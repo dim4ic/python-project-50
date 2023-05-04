@@ -7,8 +7,8 @@ gendiff:
 lint:
 	poetry run flake8 gendiff
 
-build:
-	poetry build
+build: check
+	poetry build 
 
 publish: # отладка публикации
 	poetry publish --dry-run
@@ -19,5 +19,13 @@ package-install:
 package-reinstall:
 	python3 -m pip install dist/*.whl --force-reinstall
 
-tests:
+test:
 	poetry run pytest
+
+test-coverage:
+	poetry run pytest --cov=gendiff --cov-report xml tests/
+
+selfcheck:
+	poetry check
+
+check: selfcheck test lint

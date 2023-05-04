@@ -3,3 +3,4 @@ __pycache__
 gendiff/__pycache__/
 gendiff/scripts/__pycache__/
 dist/
+.pytest_cache/
