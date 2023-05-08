@@ -7,8 +7,7 @@ gendiff:
 lint:
 	poetry run flake8 gendiff
 
-build: check
-	poetry build 
+build: poetry build 
 
 publish: # отладка публикации
 	poetry publish --dry-run
