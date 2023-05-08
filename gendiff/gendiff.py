@@ -10,7 +10,6 @@ def generate_diff(file1, file2):
     file1_keys = sorted(first_file.keys() - second_file.keys())
     file2_keys = sorted(second_file.keys() - first_file.keys())
 
-    
     for key in shared_keys:
         if first_file[key] == second_file[key]:
             difference += f"  {key}: {first_file[key]}\n"

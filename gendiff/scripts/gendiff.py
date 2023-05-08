@@ -3,6 +3,7 @@
 import argparse
 from gendiff import generate_diff
 
+
 def main():
     parser = argparse.ArgumentParser(
         prog='gendiff',
