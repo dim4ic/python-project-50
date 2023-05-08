@@ -7,7 +7,8 @@ gendiff:
 lint:
 	poetry run flake8 gendiff
 
-build: poetry build 
+build: check
+	poetry build 
 
 publish: # отладка публикации
 	poetry publish --dry-run
@@ -28,3 +29,5 @@ selfcheck:
 	poetry check
 
 check: selfcheck test lint
+
+.PHONY: install test lint selfcheck check build
