@@ -19,6 +19,7 @@ gendiff = "gendiff.scripts.gendiff:main"
 pytest = "^7.3.1"
 flake8 = "^6.0.0"
 
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
