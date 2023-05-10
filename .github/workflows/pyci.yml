@@ -22,6 +22,7 @@ jobs:
           make test
       - name: Test & publish code coverage
         uses: paambaati/codeclimate-action@v3.2.0
+        if: github.ref_name == 'main'
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.TEST_PROJECT_50 }}
         with:
