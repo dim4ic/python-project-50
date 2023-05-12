@@ -2,7 +2,7 @@ import json
 
 
 def generate_diff(file1, file2):
-    difference = ''
+    difference = []
     first_file = dict(json.load(open(file1)))
     second_file = dict(json.load(open(file2)))
 
@@ -12,13 +12,22 @@ def generate_diff(file1, file2):
 
     for key in shared_keys:
         if first_file[key] == second_file[key]:
-            difference += f"  {key}: {first_file[key]}\n"
+            diff_shared = f"    {key}: {first_file[key]}"
+            difference.append(diff_shared)
         else:
-            difference += f"- {key}: {first_file[key]}\n"
-            difference += f"+ {key}: {second_file[key]}\n"
+            diff_shared1 = f"  - {key}: {first_file[key]}"
+            difference.append(diff_shared1)
+            diff_shared2 = f"  + {key}: {second_file[key]}"
+            difference.append(diff_shared2)
     for key in file1_keys:
-        difference += f"- {key}: {first_file[key]}\n"
+        diff_file1 = f"  - {key}: {first_file[key]}"
+        difference.append(diff_file1)
     for key in file2_keys:
-        difference += f"+ {key}: {second_file[key]}\n"
+        diff_file2 = f"  + {key}: {second_file[key]}"
+        difference.append(diff_file2)
 
-    return "{\n" + difference.lower() + "}"
+    sort_difference = sorted(difference, key=lambda x: x[4])
+    final_diff = ['{'] + sort_difference + ['}']
+    diff_string = '\n'.join(final_diff)
+    final_diff_string = diff_string.replace('"', '')
+    return final_diff_string
