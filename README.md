@@ -6,4 +6,4 @@
 
 ### Сравнение плоских файлов (JSON)
 
-<a href="https://asciinema.org/a/582492" target="_blank"><img src="https://asciinema.org/a/582492.svg" /></a>
+<a href="https://asciinema.org/a/584494" target="_blank"><img src="https://asciinema.org/a/584494.svg" /></a>
