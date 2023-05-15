@@ -27,6 +27,6 @@ def generate_diff(file1, file2):
 
     sort_difference = sorted(difference, key=lambda x: x[4])
     final_diff = ['{'] + sort_difference + ['}']
-    diff_string = '\n'.join(final_diff)
+    diff_string = '\n'.join(final_diff).lower()
     final_diff_string = diff_string.replace('"', '')
     return final_diff_string
