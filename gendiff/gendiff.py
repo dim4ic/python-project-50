@@ -1,32 +1,49 @@
 from gendiff.parsing import parsing
+from gendiff.stylish import stylish
+from gendiff.constants import ADDED, REMOVED, CHANGED, UNCHANGED, DICT
+
+
+def make_diff(dict_1, dict_2): -> dict:
+    shared_keys = dict_1.keys() & dict_2.keys()
+    dict1_keys = dict_1.keys() - dict_2.keys()
+    dict2_keys = dict_2.keys() - dict_1.keys()
+    
+    diff = {}
+
+    for key in shared_keys:
+        child_1 = dict_1.get(key)
+        child_2 = dict_2.get(key)
+
+        if child_1 == child_2:
+            diff[key] = {
+                "status": UNCHANGED,
+                "diff": {key: child_1},
+            }
+        elif isinstance(child_1, dict) and isinstance(child_2, dict):
+            diff[key] = {
+                "status": DICT,
+                "diff": make_diff(child_1, child_2),
+            }
+        else:
+            diff[key] = {
+                "status": CHANGED,
+                "diff_rem": {key: child_1},
+                "diff_add": {key: child_2},
+            }
+    for key in dict1_keys:
+        diff[key] = {
+            "status": REMOVED,
+            "diff": {key: dict_1[key]},
+        }
+    for key in dict2_keys:
+        diff[key] = {
+            "status": ADDED,
+            "diff": {key: dict_2[key]},
+        }
+    return dict(sorted(diff.items()))
 
 
 def generate_diff(file1, file2):
-    difference = []
-    first_file, second_file = parsing(file1, file2)
-
-    shared_keys = sorted(first_file.keys() & second_file.keys())
-    file1_keys = sorted(first_file.keys() - second_file.keys())
-    file2_keys = sorted(second_file.keys() - first_file.keys())
-
-    for key in shared_keys:
-        if first_file[key] == second_file[key]:
-            diff_shared = f"    {key}: {first_file[key]}"
-            difference.append(diff_shared)
-        else:
-            diff_shared1 = f"  - {key}: {first_file[key]}"
-            difference.append(diff_shared1)
-            diff_shared2 = f"  + {key}: {second_file[key]}"
-            difference.append(diff_shared2)
-    for key in file1_keys:
-        diff_file1 = f"  - {key}: {first_file[key]}"
-        difference.append(diff_file1)
-    for key in file2_keys:
-        diff_file2 = f"  + {key}: {second_file[key]}"
-        difference.append(diff_file2)
-
-    sort_difference = sorted(difference, key=lambda x: x[4])
-    final_diff = ['{'] + sort_difference + ['}']
-    diff_string = '\n'.join(final_diff).lower()
-    final_diff_string = diff_string.replace('"', '')
-    return final_diff_string
+    dict_1, dict_2 = parsing(file1, file2)
+    diff = make_diff(dict_1, dict_2)
+    return stylish(diff)
