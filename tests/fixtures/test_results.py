@@ -1,4 +1,13 @@
-{
+RESULT_PLAIN = """{
+  - follow: false
+    host: hexlet.io
+  - proxy: 123.234.53.22
+  - timeout: 50
+  + timeout: 20
+  + verbose: true
+}"""
+
+RESULT_TREE = """{
     common: {
       + follow: false
         setting1: Value 1
@@ -11,7 +20,7 @@
         }
         setting6: {
             doge: {
-              - wow:
+              - wow: 
               + wow: so much
             }
             key: value
@@ -41,4 +50,4 @@
         }
         fee: 100500
     }
-}
+}"""

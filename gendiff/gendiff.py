@@ -2,12 +2,16 @@ from gendiff.parsing import parsing
 from gendiff.stylish import stylish
 from gendiff.constants import ADDED, REMOVED, CHANGED, UNCHANGED, DICT
 
+CHOOSE_FORMAT = {
+    "stylish": stylish,
+}
 
-def make_diff(dict_1, dict_2): -> dict:
+
+def make_diff(dict_1, dict_2) -> dict:
     shared_keys = dict_1.keys() & dict_2.keys()
     dict1_keys = dict_1.keys() - dict_2.keys()
     dict2_keys = dict_2.keys() - dict_1.keys()
-    
+
     diff = {}
 
     for key in shared_keys:
@@ -43,7 +47,7 @@ def make_diff(dict_1, dict_2): -> dict:
     return dict(sorted(diff.items()))
 
 
-def generate_diff(file1, file2):
+def generate_diff(file1, file2, format_name="stylish"):
     dict_1, dict_2 = parsing(file1, file2)
     diff = make_diff(dict_1, dict_2)
-    return stylish(diff)
+    return CHOOSE_FORMAT[format_name](diff)

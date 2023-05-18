@@ -1,6 +1,6 @@
 import pytest
 from gendiff import generate_diff
-from gendiff.parsing import parsing
+from tests.fixtures.test_results import RESULT_PLAIN, RESULT_TREE
 
 
 @pytest.fixture
@@ -19,27 +19,33 @@ def paths():
 
 
 @pytest.fixture
-def expected_value():
-    with open("tests/fixtures/expected_value") as file:
-        expected_value = file.read()
-    return expected_value
+def format_name():
+    format_name = {"stylish": "stylish"}
+    return format_name
 
 
-@pytest.fixture
-def expected_value_tree():
-    with open("tests/fixtures/expected_value_tree") as file:
-        expected_value_tree = file.read()
-    return expected_value_tree
-
-
-def test_generate_diff(paths, expected_value, expected_value_tree):
-    result_diff_json = str(generate_diff(paths["json1"], paths["json2"]))
-    result_diff_yml = str(generate_diff(paths["yml1"], paths["yml2"]))
-    result_diff_json_tree = str(generate_diff(paths["tree_json1"],
-                                              paths["tree_json2"]))
-    result_diff_yml_tree = str(generate_diff(paths["tree_yml1"],
-                                             paths["tree_yml2"]))
-    assert result_diff_json == expected_value
-    assert result_diff_yml == expected_value
-    assert result_diff_json_tree == expected_value_tree
-    assert result_diff_yml_tree == expected_value_tree
+def test_generate_diff(paths, format_name):
+    result_diff_json = generate_diff(
+        paths["json1"],
+        paths["json2"],
+        format_name["stylish"],
+    )
+    result_diff_yml = generate_diff(
+        paths["yml1"],
+        paths["yml2"],
+        format_name["stylish"],
+    )
+    result_diff_json_tree = generate_diff(
+        paths["tree_json1"],
+        paths["tree_json2"],
+        format_name["stylish"],
+    )
+    result_diff_yml_tree = generate_diff(
+        paths["tree_yml1"],
+        paths["tree_yml2"],
+        format_name["stylish"],
+    )
+    assert result_diff_json == RESULT_PLAIN
+    assert result_diff_yml == RESULT_PLAIN
+    assert result_diff_json_tree == RESULT_TREE
+    assert result_diff_yml_tree == RESULT_TREE
