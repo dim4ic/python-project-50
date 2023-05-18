@@ -12,3 +12,8 @@
 ### Сравнение плоских файлов (YAML)
 
 <a href="https://asciinema.org/a/XDNZWZvLwNlsLEpftgVYXgVU6" target="_blank"><img src="https://asciinema.org/a/XDNZWZvLwNlsLEpftgVYXgVU6.svg" /></a>
+
+
+### Рекурсивное сравнение файлов форматов json и yaml
+
+<a href="https://asciinema.org/a/1JxuU7og0WGoUVhQ3DXlJdaxK" target="_blank"><img src="https://asciinema.org/a/1JxuU7og0WGoUVhQ3DXlJdaxK.svg" /></a>
