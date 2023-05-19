@@ -12,7 +12,7 @@ def main():
     parser.add_argument("first_file", type=str)
     parser.add_argument("second_file", type=str)
     parser.add_argument('-f', '--format',
-                        choices=["stylish"],
+                        choices=["stylish", "plain"],
                         default="stylish",
                         help='set format of output')
     args = parser.parse_args()

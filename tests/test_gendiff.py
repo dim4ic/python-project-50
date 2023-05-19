@@ -20,7 +20,10 @@ def paths():
 
 @pytest.fixture
 def format_name():
-    format_name = {"stylish": "stylish"}
+    format_name = {
+        "stylish": "stylish",
+        "plain": "plain",
+    }
     return format_name
 
 
