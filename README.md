@@ -17,3 +17,8 @@
 ### Рекурсивное сравнение файлов форматов json и yaml
 
 <a href="https://asciinema.org/a/1JxuU7og0WGoUVhQ3DXlJdaxK" target="_blank"><img src="https://asciinema.org/a/1JxuU7og0WGoUVhQ3DXlJdaxK.svg" /></a>
+
+
+### Плоский формат рекурсивного сравнения файлов форматов json и yaml
+
+<a href="https://asciinema.org/a/y103jLi1Nxe8khlnbxWgoEdr8" target="_blank"><img src="https://asciinema.org/a/y103jLi1Nxe8khlnbxWgoEdr8.svg" /></a>
