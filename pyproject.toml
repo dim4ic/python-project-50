@@ -1,7 +1,9 @@
 [tool.poetry]
 name = "hexlet-code"
 version = "0.1.0"
-description = ""
+description = "This program defines the difference between two data structures."
+repository = "https://github.com/dim4ic/python-project-50"
+classifiers = [ "Programming Language :: Python :: 3.1" ]
 authors = ["dim4ick <romanoff_d@mail.ru>"]
 readme = "README.md"
 packages = [
