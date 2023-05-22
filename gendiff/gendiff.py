@@ -1,10 +1,11 @@
 from gendiff.parsing import parsing
-from gendiff.formatters import format_stylish, format_plain
+from gendiff.formatters import format_stylish, format_plain, format_json
 from gendiff.constants import ADDED, REMOVED, CHANGED, UNCHANGED, DICT
 
 CHOOSE_FORMAT = {
     "stylish": format_stylish,
     "plain": format_plain,
+    "json": format_json,
 }
 
 

@@ -1,6 +1,7 @@
 import pytest
 from gendiff import generate_diff
-from tests.fixtures.test_results import RESULT_PLAIN, RESULT_TREE, RESULT_STAT
+from tests.fixtures.test_results import \
+    RESULT_PLAIN, RESULT_TREE, RESULT_STAT, RESULT_JSON
 
 
 @pytest.fixture
@@ -23,6 +24,7 @@ def format_name():
     format_name = {
         "stylish": "stylish",
         "plain": "plain",
+        "json": "json",
     }
     return format_name
 
@@ -58,9 +60,15 @@ def test_generate_diff(paths, format_name):
         paths["tree_yml2"],
         format_name["plain"],
     )
+    result_diff_json_view = generate_diff(
+        paths["tree_json1"],
+        paths["tree_json2"],
+        format_name["json"],
+    )
     assert result_diff_json == RESULT_PLAIN
     assert result_diff_yml == RESULT_PLAIN
     assert result_diff_json_tree == RESULT_TREE
     assert result_diff_yml_tree == RESULT_TREE
     assert result_diff_json_tree_stat == RESULT_STAT
     assert result_diff_yml_tree_stat == RESULT_STAT
+    assert result_diff_json_view == RESULT_JSON
